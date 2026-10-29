@@ -4,7 +4,7 @@ title: '#4471 · three problems, not one'
 owner: Henry Dennis
 status: open
 reviewed: 2026-10-28
-signature: Henry Dennis
+signature: 'v1.eyJzdWIiOiIxMDg2IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMyOTA1NzgsImV4cCI6MTc5MzM3Njk3OH0.vSH6nllW3D0hwu87-Mevq8C4Ve5Cc9zCAea8dn8zoTo'
 ---
 
 <script>
