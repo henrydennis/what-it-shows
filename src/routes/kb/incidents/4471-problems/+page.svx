@@ -52,8 +52,9 @@ Each now has a ticket of its own.
   The counts above come from the tenant's locale and booking form (`causes.ts`), not from the tag.
 - **Subjects don't tell them apart.** The same subject lines turn up in all three problems,
   so matching on subject ([decision 0001](/kb/decisions/0001-dedupe-by-subject)) cannot split them.
-- **The old table counts one-day moves as `parser`.** On the #4471 page they are only a footnote,
-  and the hint row says "no ticket of its own". Here is that table, unchanged:
+- **The old table gives one-day moves no row.** On the #4471 page they are only a footnote under
+  `parser`, and the hint row says "no ticket of its own". The counts above are the same as that
+  table's; they add a row for the one-day moves. Here is that table, unchanged:
 
 <CauseTable ticket={4471} />
 

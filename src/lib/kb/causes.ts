@@ -95,24 +95,3 @@ export function ticketCause(groups: CauseGroup[], ticket: number): CauseGroup['c
 export function readAs(g: CauseGroup, ids: readonly string[]): number {
   return g.reports.filter((r) => ids.includes(r.id)).length;
 }
-
-// What a report turned out to be: one problem, one ticket. A one-day move (desk-notes.json) is no
-// month/day swap, so neither cause above explains it, whatever its tenant writes.
-export type Problem = Cause | 'one-day';
-export const PROBLEMS: readonly Problem[] = [...CAUSES, 'one-day'];
-
-export function problemOf(r: Pick<Report, 'id' | 'channel'>, t: Tenant | undefined, oneDay: readonly string[]): Problem | null {
-  return oneDay.includes(r.id) ? 'one-day' : causeOf(r, t);
-}
-
-export type ProblemGroup = Omit<CauseGroup, 'cause'> & { problem: Problem | 'unplaced' };
-
-// Same rows as groupByCause, with the one-day moves taken out into their own problem.
-export function groupByProblem(reports: Report[], tenantOf: (r: Report) => Tenant | undefined, oneDay: readonly string[]): ProblemGroup[] {
-  const moved = reports.filter((r) => oneDay.includes(r.id));
-  const rest = groupByCause(reports.filter((r) => !oneDay.includes(r.id)), tenantOf).map(({ cause, ...g }) => ({ ...g, problem: cause }));
-  if (!moved.length) return rest;
-  const [one] = groupByCause(moved, () => undefined);
-  const { cause: _, ...g } = one;
-  return [...rest, { ...g, problem: 'one-day' as const }].sort((a, b) => b.reports.length - a.reports.length);
-}
